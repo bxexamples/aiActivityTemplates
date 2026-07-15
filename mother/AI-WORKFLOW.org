@@ -1,0 +1,135 @@
+#+title: AI-WORKFLOW --- ByStar's Collaborative AI Development Workflow
+#+DATE: <2026-06-10 Wed 13:54>
+#+AUTHOR: Mohsen BANAN
+#+OPTIONS: toc:4
+#+TAGS: me ai aiAndMe
+
+This is an overview of my collaborative AI development workflow. It is
+generalized and not specific to any particular activity. I use it for
+developing and updating documents, books and presentations (usually with LaTeX),
+software development in Python and elisp or even short notes like this one.
+
+For each of those activities I maintain a set of starting point templates.
+My workflow is mostly the same for starting a new project or extending an existing project.
+
+In my case, I use Claude inside of emacs (with claude-code.el) and assume that
+org-mode is available. Most org-mode features are also available in VSCode
+through the Org-vscode extension --- but I don't use that much (emacs is of
+course much better). I use org-mode heavily for its mark-down, outlining,
+cross-referencing, TODO-lists, agenda, scheduling and archiving capabilities. I
+use the TODOs list feature to assign tasks to AI (Claude) and to myself. After
+completing the task, I ask Claude to summarize it, mark it as done and archive
+it.
+
+** How These Files Are Set Up
+
+The AI collaboration files in any given project/repo are installed by
+=startAiActivity.cs=, a PyCS command shipped as the =bisos.startAiActivity=
+pip package (installable via =pipx install bisos.startAiActivity=;
+sources at =/bisos/git/auth/bxRepos/bisos-pip/startAiActivity=).
+
+Before starting Claude in a new project directory, the developer runs:
+
+: startAiActivity.cs -i initiate --activity=<activity>
+
+For a slim overlay in a subproject of an already-initiated repo, use:
+
+: startAiActivity.cs -i initiateSub --activity=<activity>
+
+where =<activity>= matches a subdirectory under =/bisos/apps/defaults/ai-templates/=
+(e.g. =bisos-pip=, =xu-single=, =blee-panels=, =lcnt=).
+
+This installs:
+- Symlinks for constant files (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) from =mother/=
+- A symlink for =AI-Activity.org= from =<activity>/= (activity-specific conventions)
+- Local copies of =AI-DevStatus.org= and =AI-WorkPlan.org= from =<activity>/=
+  (with =b:ai:file/particulars= dblocks expanded via =bisos.pyDblock= to reflect the target directory)
+- =.claude/= directory with =settings.json= (pre-authorized commands), =commands/=
+  (=bx-= slash commands), and optionally =skills/= (activity-specific skills)
+
+When =initiateSub= is used instead of =initiate=, only =CLAUDE.md= (slim overlay
+imports only the local trio), =AI-Activity.org= (symlinked), =AI-DevStatus.org=,
+and =AI-WorkPlan.org= are installed. The invariants (=AI-AGENTS.org=,
+=AI-WORKFLOW.org=, =.claude/=) are inherited from a parent directory via
+Claude Code's =CLAUDE.md= walk-up. =initiateSub= refuses if no initiated
+parent is found.
+
+This means: when you (Claude) see this file in a project, the symlinks point back to
+the canonical templates in =/bisos/apps/defaults/ai-templates/mother/=, and the local
+copies of =AI-DevStatus.org= and =AI-WorkPlan.org= are project-specific and editable.
+
+** File Naming Convention
+
+All-caps filenames (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) are constant —
+always symlinked from =mother/=, never edited in the project.
+Mixed-case filenames (=AI-Activity.org=, =AI-DevStatus.org=, =AI-WorkPlan.org=) are
+local and editable — either symlinked from =<activity>/= or safe-copied for the project.
+
+Here is a list of the AI collaboration files that I maintain for each project/repo.
+The third column is one of: const(constant), ai, you, u+ai --- which says who produces the file.
+
+|--------------------+------------------------------------------------------------------+-------|
+| ./CLAUDE.md        | Default for Claude, imports ./AI-AGENTS.org to enable org-mode   | const |
+|--------------------+------------------------------------------------------------------+-------|
+| ./AI-AGENTS.org    | Master for importing everything else and describing the project  | const |
+|                    | It imports ./AI-Activity.org, ./AI-DevStatus.org,                 |       |
+|                    | ./AI-WorkPlan.org and  ./AI-WorkPlan-archive.org                 |       |
+|--------------------+------------------------------------------------------------------+-------|
+| ./AI-WORKFLOW.org  | A description of this workflow, for the AI-Assistant's benefit.  | const |
+|--------------------+------------------------------------------------------------------+-------|
+| ./AI-Activity.org  | Activity-specific guidance: repo purpose, frameworks,            | you   |
+|                    | conventions, and ByStar/BISOS/Blee context for this activity.    |       |
+|--------------------+------------------------------------------------------------------+-------|
+| ./AI-DevStatus.org | After every major interaction, I ask Claude to update this with  | ai    |
+|                    | details of what it has understood and where the project stands   |       |
+|                    | This allows me (or others) to continue the work on a different   |       |
+|                    | machine (which does not have Claude's memory)                    |       |
+|--------------------+------------------------------------------------------------------+-------|
+| ./AI-WorkPlan.org  | This is where I drive the project.                               | u+ai  |
+|                    | I break down my interactions into "Stages". Each Stage has a set |       |
+|                    | of TODOs that I work with Claude to accomplish.                  |       |
+|--------------------+------------------------------------------------------------------+-------|
+| ./xx.org_archive   | From time to time I move Done subtrees to org archive files.     | u+ai  |
+|--------------------+------------------------------------------------------------------+-------|
+
+
+The goal is to establish a precise, evolving and maintainable long-context across sessions and machines.
+
+** Claude Slash Commands
+
+Each project initialized with =startAiActivity.cs= gets a =.claude/commands/= directory
+with these =bx-= commands available inside Claude:
+
+|--------------------+----------------------------------------------------------------|
+| /bx-confirm0       | Enumerate imported files and confirm understanding of context  |
+|                    | Use at the start of every session.                             |
+|--------------------+----------------------------------------------------------------|
+| /bx-status         | Summarize current dev state and list open TODOs.               |
+|                    | Use when resuming work after a break.                          |
+|--------------------+----------------------------------------------------------------|
+| /bx-done <anchor>  | Mark the TODO with <<anchor>> as DONE and write AI Results.    |
+|--------------------+----------------------------------------------------------------|
+| /bx-update-status  | Rewrite AI-DevStatus.org to reflect current state.             |
+|                    | Use after completing a stage or before a release.              |
+|--------------------+----------------------------------------------------------------|
+| /bx-initiate       | Run startAiActivity.cs then read the full import chain.        |
+|                    | For non-Emacs workflows only — Emacs reads CLAUDE.md           |
+|                    | automatically at startup, making this redundant.               |
+|--------------------+----------------------------------------------------------------|
+
+Note: in the Emacs workflow, CLAUDE.md is read automatically at startup.
+=/bx-confirm0= is optional but useful as an explicit session-start confirmation.
+
+AI Templates are kept at: https://github.com/bisos/defaults/tree/master/ai-templates
+An example AI collaborative project: https://github.com/bisos-pip/gitist
+
+** Claude Permissions
+
+Whenever Claude asks the user for permission to run a command, Claude must also
+offer the option to add that permission to =.claude/settings.json= so it is
+pre-authorized for future sessions. Present this as part of the same prompt —
+not as a separate follow-up.
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# End:

@@ -1,0 +1,30 @@
+#+title: Capabilities Improvement for airflow.here --- Work Plan
+#+DATE: <2026-06-10 Wed 13:54>
+#+AUTHOR: Mohsen BANAN
+#+OPTIONS: toc:4
+#+TAGS: me ai aiAndMe
+
+This Work Plan file drives the AI collaborative development.
+Interactions are broken down into "Stages". Each Stage has a set
+of TODOs that I work with Claude to accomplish.
+
+Companion docs: [[file:AI-AGENTS.org][AI-AGENTS.org]] (agent guidance / layering), [[file:README.org][README.org]] (overview).
+
+* Stage 1: Description of panel enhancement comes here
+
+Goal: Description of What the panel should do comes here
+
+
+* Stage 1 TODOs
+** +
+** TODO [#A] Add <<topic>> here
+SCHEDULED: <2026-06-28 Sun 15:22>
+Describe the topic here.
+----- AI Results: ------
+** -
+
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# eval: (setq-local org-log-done 'time)
+# End:

@@ -1,0 +1,40 @@
+#+title: Development Status & Continuation Handoff
+#+TAGS: me ai aiAndMe
+
+####+BEGIN: b:ai:file/particulars
+* AI Working Context
+  Working Directory: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test
+  File: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test/AI-DevStatus.org
+  Activity: xu-single
+  Companion Docs: AI-AGENTS.org, AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
+
+####+END:
+
+This file is a working-state handoff so development can continue on another
+machine (which has this repo but NOT the developer's =~=). It captures the
+architecture, what works, what is untested and the design decisions made so far.
+
+This file is maintained by Claude. Updates are typically triggered by the
+=/bx-update-status= slash command, after major interactions, or before a release.
+
+Note to a fresh Claude: this file is intentionally sparse at project start.
+Fill in the sections below when asked to update, following the structure provided.
+
+* Current State
+  [To be filled in by Claude after first substantive interaction]
+
+* Architecture
+  [Key components, file structure, entry points]
+
+* What Works
+  [Verified functionality]
+
+* What Is Untested
+  [Known gaps]
+
+* Key Design Decisions
+  [Non-obvious choices and their rationale]
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# End:

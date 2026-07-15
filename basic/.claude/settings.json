@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Bash(startAiActivity.cs)",
+      "Bash(startAiActivity.cs *)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(find *)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(grep*)",
+      "Bash(/bisos/venv/py3/bisos3/bin/python*)",
+      "Bash(/bisos/pipx/bin/pyflakes*)",
+      "Bash(/bisos/pipx/bin/flake8*)"
+    ]
+  }
+}

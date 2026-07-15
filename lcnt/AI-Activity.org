@@ -1,0 +1,23 @@
+#+title: AI Agents Guidance for lcnt.xxx
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+* Table of Contents     :TOC:
+- [[#general-this-repo-contains-lcnts][General: This Repo contains LCNT's]]
+- [[#general-running-latex-on-inputs][General: Running LaTeX on Inputs]]
+- [[#git-commits-and-git-pushes][Git Commits and Git Pushes]]
+
+* General: This Repo contains LCNT's
+
+See NOTYET
+
+* General: Running LaTeX on Inputs
+
+Make sure that lcntProc.sh has NOTYET
+
+* Git Commits and Git Pushes
+
+I don't want Claude to suggest the prompt of "commit this" or "push this".
+I want to do all the commits and pushes myself.
+Instead just suggest that I can commit.
+

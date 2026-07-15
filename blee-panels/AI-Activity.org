@@ -1,0 +1,29 @@
+#+title: AI Agents Guidance for bisos.newPkg
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+* Table of Contents     :TOC:
+- [[#general-this-repo-is-part-of-bystar-bisos-and-blee][General: This Repo is Part of ByStar, BISOS and Blee]]
+- [[#about-blee-panels-in-general][About Blee Panels in General]]
+- [[#git-commits-and-git-pushes][Git Commits and Git Pushes]]
+
+* General: This Repo is Part of ByStar, BISOS and Blee
+
+Read
+
+/bisos/git/bxRepos/bisos-pip//.github/profile/readme.org
+
+when needed.
+
+* About Blee Panels in General
+
+Blee-Panels are described in:
+
+@/bisos/panels/blee-core/blee-panels/_nodeBase_/fullUsagePanel-en.org
+
+* Git Commits and Git Pushes
+
+I don't want Claude to suggest me to prompt me:  "commit this" or "push this".
+I want to do all the commits and pushes myself.
+Instead just suggest that I myself can commit.
+
