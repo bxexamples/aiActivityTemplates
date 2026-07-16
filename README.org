@@ -56,7 +56,7 @@ instance.
 | Category       | (of Activity) |                                                      |
 |----------------+---------------+------------------------------------------------------|
 |----------------+---------------+------------------------------------------------------|
-| Any            | [[mother][./mother]]      | Constant invariants: =CLAUDE.md=, =AI-AGENTS.org=,   |
+| Any            | [[mother][./mother]]      | Constant invariants: =CLAUDE.md=,   |
 |                |               | =AI-WORKFLOW.org=, =_claude/=, =initiateSub/=.       |
 |                |               | Symlinked into every activity below.                 |
 |----------------+---------------+------------------------------------------------------|
@@ -75,7 +75,7 @@ instance.
 |----------------+---------------+------------------------------------------------------|
 
 The =mother/= baseline is *symlinked into every activity*, not duplicated.
-The invariants (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) apply
+The invariants (=CLAUDE.md=, =AI-WORKFLOW.org=) apply
 uniformly; per-activity content (=AI-Activity.org=, initial
 =AI-WorkPlan.org= / =AI-DevStatus.org=, optional =_skills/=) overrides
 or extends where relevant.
@@ -88,7 +88,7 @@ what (if anything) it ships beyond the standard file set.
 ** <<mother>> --- constant invariants
 
 Not an activity you =initiate= directly. Its contents (=CLAUDE.md=,
-=AI-AGENTS.org=, =AI-WORKFLOW.org=, =_claude/settings.json=,
+=AI-WORKFLOW.org=, =_claude/settings.json=,
 =_claude/commands/=, =initiateSub/CLAUDE.md=) are what every =initiate=
 symlinks in. ByStar-wide conventions that should apply to every activity
 live here.
@@ -198,7 +198,7 @@ This creates the following at the target:
 
 *Constants* (symlinks to =mother/=):
 - =./CLAUDE.md=
-- =./AI-AGENTS.org=
+- =./=
 - =./AI-WORKFLOW.org=
 - =./.claude/settings.json=, =./.claude/commands/=, optionally =./.claude/skills/=
 
@@ -221,7 +221,7 @@ startAiActivity.cs -i initiateSub --activity=bisos-pip
 
 This installs only =CLAUDE.md= (slim; imports only the local trio),
 =AI-Activity.org= (symlink), =AI-DevStatus.org= (safe-copy), and
-=AI-WorkPlan.org= (safe-copy). No =AI-AGENTS.org=, =AI-WORKFLOW.org=, or
+=AI-WorkPlan.org= (safe-copy). No =AI-WORKFLOW.org=, or
 =.claude/= --- those come from the ancestor.
 
 * Customizing (Forking)
@@ -230,7 +230,7 @@ The whole point of this repo being separate from the engine is that
 users can *fork it and customize* for their own conventions:
 
 - Fork =bxexamples/aiActivityTemplates= on GitHub.
-- Edit =mother/CLAUDE.md=, =mother/AI-AGENTS.org=, =mother/AI-WORKFLOW.org=
+- Edit =mother/CLAUDE.md=, =mother/=, =mother/AI-WORKFLOW.org=
   to reflect your team's conventions.
 - Add your own activity directories (=./my-team-python/=, =./my-lab-notes/=, ...).
 - =userConfig_set --parValue= your fork's local path.

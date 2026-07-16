@@ -8,7 +8,7 @@ architecture, what works, what is untested and the design decisions made so far.
 This file is to be maintained by Claude. When a release is being made, claude should be
 prompted to update this document.
 
-Companion docs: [[file:AI-AGENTS.org][AI-AGENTS.org]] (agent guidance / layering), [[file:README.org][README.org]] (overview).
+Companion docs: [[file:][]] (agent guidance / layering), [[file:README.org][README.org]] (overview).
 
 
 

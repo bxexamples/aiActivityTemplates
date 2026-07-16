@@ -146,7 +146,7 @@ PyCS-Framework augments the bisos.b package which is at /bisos/git/bxRepos/bisos
 --- =bisos.b= provides the =cs=, =b_io=, and =b.op= APIs this repo imports.
 Its Blee-Panel is @/bisos/git/bxRepos/bisos-pip/b/py3/panels/bisos.b/_nodeBase_/fullUsagePanel-en.org
 
-When descending into either repo, follow its own =AI-AGENTS.org= (if present)
+When descending into either repo, follow its own (if present)
 the same way this file points up to the org-wide readme.
 
 

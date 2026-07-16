@@ -98,7 +98,7 @@ not reflect source changes, reinstall editable:
   Source: =/bisos/git/bxRepos/bisos-pip/pycs=
 - PyCS-Framework panel: @/bisos/panels/bisos-core/PyCsFwrk/_nodeBase_/fullUsagePanel-en.org
 
-When descending into either repo, follow its own =AI-AGENTS.org= if present.
+When descending into either repo, follow its own if present.
 
 * Documentation Hierarchy
 

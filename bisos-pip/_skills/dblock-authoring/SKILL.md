@@ -46,7 +46,7 @@ Common signatures encountered in bisos-pip code:
 | `b:py3:cs:file/dblockControls`                | File-level dblock classification (cs-mu, cs-u, etc.) |
 | `b:py3:cs:framework/imports`                  | Standard imports for a CS file                       |
 | `b:py3:cs:framework/csuListProc`              | csxu-only: parse elisp `b:py:cs:csuList` (see below) |
-| `b:py3:cs:framework/main`                     | The `if __name__ == '__main__':` block               |
+| `b:py3:cs:framework/main`                     | The `if __name__ '__main__':` block               |
 | `b:py3:cs:framework/endOfFile`                | End-of-editable-text marker + emacs locals           |
 | `b:py3:cs:cmnd/classHead`                     | Generate a `cs.Cmnd` subclass header                 |
 | `b:py3:cs:method/args`                        | Generate a `cmndArgsSpec()` method body              |

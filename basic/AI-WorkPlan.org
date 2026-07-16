@@ -9,7 +9,7 @@
   Working Directory: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test
   File: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test/AI-WorkPlan.org
   Activity: xu-single
-  Companion Docs: AI-AGENTS.org, AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
+  Companion Docs: AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
 
 ####+END:
 
@@ -17,7 +17,7 @@ This Work Plan file drives the AI collaborative development.
 Interactions are broken down into "Stages". Each Stage has a set
 of TODOs that I work with Claude to accomplish.
 
-Note to a fresh Claude: read this file together with AI-AGENTS.org, AI-WORKFLOW.org,
+Note to a fresh Claude: read this file together with AI-WORKFLOW.org,
 AI-Activity.org and AI-DevStatus.org to orient yourself. The =<<Context Confirmation>>=
 TODO below is the standard first step, or use =/bx-confirm0= as the automated equivalent.
 TODOs tagged =:ai:= are assigned to Claude. After completing a TODO, summarize results

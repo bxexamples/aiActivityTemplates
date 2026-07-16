@@ -40,7 +40,7 @@ where =<activity>= matches a subdirectory under =/bisos/apps/defaults/ai-templat
 (e.g. =bisos-pip=, =xu-single=, =blee-panels=, =lcnt=).
 
 This installs:
-- Symlinks for constant files (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) from =mother/=
+- Symlinks for constant files (=CLAUDE.md=, =AI-WORKFLOW.org=) from =mother/=
 - A symlink for =AI-Activity.org= from =<activity>/= (activity-specific conventions)
 - Local copies of =AI-DevStatus.org= and =AI-WorkPlan.org= from =<activity>/=
   (with =b:ai:file/particulars= dblocks expanded via =bisos.pyDblock= to reflect the target directory)
@@ -49,10 +49,9 @@ This installs:
 
 When =initiateSub= is used instead of =initiate=, only =CLAUDE.md= (slim overlay
 imports only the local trio), =AI-Activity.org= (symlinked), =AI-DevStatus.org=,
-and =AI-WorkPlan.org= are installed. The invariants (=AI-AGENTS.org=,
-=AI-WORKFLOW.org=, =.claude/=) are inherited from a parent directory via
-Claude Code's =CLAUDE.md= walk-up. =initiateSub= refuses if no initiated
-parent is found.
+and =AI-WorkPlan.org= are installed. The invariants (=AI-WORKFLOW.org=,
+=.claude/=) are inherited from a parent directory via Claude Code's
+=CLAUDE.md= walk-up. =initiateSub= refuses if no initiated parent is found.
 
 This means: when you (Claude) see this file in a project, the symlinks point back to
 the canonical templates in =/bisos/apps/defaults/ai-templates/mother/=, and the local
@@ -60,7 +59,7 @@ copies of =AI-DevStatus.org= and =AI-WorkPlan.org= are project-specific and edit
 
 ** File Naming Convention
 
-All-caps filenames (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) are constant —
+All-caps filenames (=CLAUDE.md=, =AI-WORKFLOW.org=) are constant —
 always symlinked from =mother/=, never edited in the project.
 Mixed-case filenames (=AI-Activity.org=, =AI-DevStatus.org=, =AI-WorkPlan.org=) are
 local and editable — either symlinked from =<activity>/= or safe-copied for the project.
@@ -69,11 +68,9 @@ Here is a list of the AI collaboration files that I maintain for each project/re
 The third column is one of: const(constant), ai, you, u+ai --- which says who produces the file.
 
 |--------------------+------------------------------------------------------------------+-------|
-| ./CLAUDE.md        | Default for Claude, imports ./AI-AGENTS.org to enable org-mode   | const |
-|--------------------+------------------------------------------------------------------+-------|
-| ./AI-AGENTS.org    | Master for importing everything else and describing the project  | const |
-|                    | It imports ./AI-Activity.org, ./AI-DevStatus.org,                 |       |
-|                    | ./AI-WorkPlan.org and  ./AI-WorkPlan-archive.org                 |       |
+| ./CLAUDE.md        | Default for Claude. Imports ./AI-WORKFLOW.org, ./AI-Activity.org,| const |
+|                    | ./AI-DevStatus.org, and ./AI-WorkPlan.org --- the whole context  |       |
+|                    | chain a Claude Code session loads on startup.                    |       |
 |--------------------+------------------------------------------------------------------+-------|
 | ./AI-WORKFLOW.org  | A description of this workflow, for the AI-Assistant's benefit.  | const |
 |--------------------+------------------------------------------------------------------+-------|
@@ -89,7 +86,11 @@ The third column is one of: const(constant), ai, you, u+ai --- which says who pr
 |                    | I break down my interactions into "Stages". Each Stage has a set |       |
 |                    | of TODOs that I work with Claude to accomplish.                  |       |
 |--------------------+------------------------------------------------------------------+-------|
-| ./xx.org_archive   | From time to time I move Done subtrees to org archive files.     | u+ai  |
+| ./xx.org_archive   | From time to time I move Done subtrees to org archive files      | u+ai  |
+|                    | (via org-mode's =org-archive-subtree=, standard =C-c C-x C-a=).  |       |
+|                    | The =bisos.startAiActivity= repo ships a real                    |       |
+|                    | =AI-WorkPlan.org_archive= alongside =AI-WorkPlan.org= as a       |       |
+|                    | working example of the pattern.                                  |       |
 |--------------------+------------------------------------------------------------------+-------|
 
 

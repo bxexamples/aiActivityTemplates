@@ -8,7 +8,7 @@
 * AI Working Context
   Working Directory: /bisos/apps/defaults/ai-templates/bystar
   File: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/bystar/AI-WorkPlan.org
-  Companion Docs: AI-AGENTS.org, AI-DevStatus.org
+  Companion Docs: AI-DevStatus.org
 
 ####+END:
 
@@ -16,7 +16,7 @@ This Work Plan file drives the AI collaborative development.
 Interactions are broken down into "Stages". Each Stage has a set
 of TODOs that I work with Claude to accomplish.
 
-Note to a fresh Claude: read this file together with AI-AGENTS.org, AI-WORKFLOW.org,
+Note to a fresh Claude: read this file together with AI-WORKFLOW.org,
 AI-Activity.org and AI-DevStatus.org to orient yourself. The =<<Context Confirmation>>=
 TODO below is the standard first step, or use =/bx-confirm0= as the automated equivalent.
 TODOs tagged =:ai:= are assigned to Claude. After completing a TODO, summarize results

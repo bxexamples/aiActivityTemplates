@@ -6,7 +6,7 @@
   Working Directory: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test
   File: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test/AI-DevStatus.org
   Activity: xu-single
-  Companion Docs: AI-AGENTS.org, AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
+  Companion Docs: AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
 
 ####+END:
 
