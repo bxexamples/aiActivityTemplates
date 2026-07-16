@@ -49,37 +49,101 @@ Activities are *classes of work*; WorkPlans are *instances*. This repo
 holds the classes; each project that is =initiate=-d gets its own
 instance.
 
-* The Activities
+* Activities Available in This Directory
 
-The activities currently shipped in this repo:
-
-|--------------+---------------+-------------------------------------------------------|
-| Activity     | Directory     | Purpose                                               |
-|--------------+---------------+-------------------------------------------------------|
-| (baseline)   | ./mother      | Constant invariants (=CLAUDE.md=, =AI-AGENTS.org=,     |
-|              |               | =AI-WORKFLOW.org=, =_claude/= settings + commands,     |
-|              |               | =initiateSub/CLAUDE.md= slim overlay template).       |
-|              |               | Symlinked into every activity.                        |
-|--------------+---------------+-------------------------------------------------------|
-| Python (BISOS)| ./bisos-pip  | For building =bisos-pip= (BISOS PyPI) packages.        |
-|              |               | Ships =_skills/= for CS-command authorship,           |
-|              |               | dblock authoring, README writing, Blee panel          |
-|              |               | authoring, PyPI release workflow.                     |
-|--------------+---------------+-------------------------------------------------------|
-| Single-XU    | ./xu-single   | For single PyCS eXecution Unit scripts.               |
-|--------------+---------------+-------------------------------------------------------|
-| Blee panels  | ./blee-panels | For Blee panel org-file authorship.                   |
-|--------------+---------------+-------------------------------------------------------|
-| LaTeX        | ./lcnt        | For LCNT content (articles, books, presentations).    |
-|--------------+---------------+-------------------------------------------------------|
-| Elisp        | ./blee-pkgs   | Placeholder (not yet populated).                      |
-|--------------+---------------+-------------------------------------------------------|
+|----------------+---------------+------------------------------------------------------|
+| Activity       | Directory     | Comments                                             |
+| Category       | (of Activity) |                                                      |
+|----------------+---------------+------------------------------------------------------|
+|----------------+---------------+------------------------------------------------------|
+| Any            | [[mother][./mother]]      | Constant invariants: =CLAUDE.md=, =AI-AGENTS.org=,   |
+|                |               | =AI-WORKFLOW.org=, =_claude/=, =initiateSub/=.       |
+|                |               | Symlinked into every activity below.                 |
+|----------------+---------------+------------------------------------------------------|
+| General        | [[basic][./basic]]       | Typically installed at a repo root that will contain |
+|                |               | multiple heterogeneous subprojects. Deliberately low |
+|                |               | specificity --- each nested =initiateSub= specifies  |
+|                |               | its own activity.                                    |
+|----------------+---------------+------------------------------------------------------|
+| Python (BISOS) | [[bisos-pip][./bisos-pip]]   | For building =bisos-pip= (BISOS PyPI) packages.      |
+|                | [[xu-single][./xu-single]]   | For single PyCS eXecution Unit scripts.              |
+|                | [[bisos-core][./bisos-core]]  | For BISOS-core / infrastructure work.                |
+|----------------+---------------+------------------------------------------------------|
+| Org            | [[blee-panels][./blee-panels]] | For Blee panel org-file authorship.                  |
+|----------------+---------------+------------------------------------------------------|
+| LaTeX          | [[lcnt][./lcnt]]        | For LCNT content (articles, books, presentations).   |
+|----------------+---------------+------------------------------------------------------|
 
 The =mother/= baseline is *symlinked into every activity*, not duplicated.
 The invariants (=CLAUDE.md=, =AI-AGENTS.org=, =AI-WORKFLOW.org=) apply
 uniformly; per-activity content (=AI-Activity.org=, initial
 =AI-WorkPlan.org= / =AI-DevStatus.org=, optional =_skills/=) overrides
 or extends where relevant.
+
+* Per-Activity Notes
+
+Details on when to pick each activity, what conventions it encodes, and
+what (if anything) it ships beyond the standard file set.
+
+** <<mother>> --- constant invariants
+
+Not an activity you =initiate= directly. Its contents (=CLAUDE.md=,
+=AI-AGENTS.org=, =AI-WORKFLOW.org=, =_claude/settings.json=,
+=_claude/commands/=, =initiateSub/CLAUDE.md=) are what every =initiate=
+symlinks in. ByStar-wide conventions that should apply to every activity
+live here.
+
+Edit =mother/= carefully: changes propagate live to every project that
+has been =initiate=-d against this templates directory (that's the
+point of the symlink architecture). Forkers of this repo customize
+=mother/= to encode their own team's conventions.
+
+** <<basic>> --- general-purpose repo-root scaffold
+
+Pick =basic= when the target directory is a repo root that will contain
+multiple, heterogeneous subprojects, each with its own activity. =basic=
+establishes the invariant CLAUDE.md hierarchy at the top so that nested
+=initiateSub= calls in subdirectories can walk up and find it.
+
+Not appropriate for a leaf project doing one specific kind of work
+--- for those, pick the matching activity directly.
+
+** <<bisos-pip>> --- building bisos-pip PyPI packages
+
+Pick this for authoring a =bisos-pip= Python package (a PyCS
+command-service unit installable via =pip= or =pipx=). Its
+=AI-Activity.org= describes the =bisos-pip= conventions: PyCS
+=cs.Cmnd= subclasses, poly-dblock authoring, =bisos.b= dependencies,
+=setup.py= structure, and the release workflow via =pypiProc.sh=.
+
+Ships =_skills/= (loaded on demand by Claude Code): =writing-cs-commands=,
+=dblock-authoring=, =readme-authorship=, =blee-panel-authorship=,
+=bisos-pip-release=. These are procedural knowledge only loaded when
+the current task matches --- see the engine README for the skills
+mechanism.
+
+** <<xu-single>> --- single PyCS eXecution Unit scripts
+
+Pick this for a standalone =.cs= or =.pcs= script that isn't part of a
+=bisos-pip= package. Simpler scope than =bisos-pip= --- no packaging,
+no PyPI, just a single-file PyCS command.
+
+** <<bisos-core>> --- BISOS-core / infrastructure work
+
+Pick this for work on BISOS-core packages and infrastructure --- lower
+layers of BISOS that are not =bisos-pip= application packages.
+
+** <<blee-panels>> --- Blee panel authorship
+
+Pick this for authoring Blee panels (org-mode files under
+=_nodeBase_/fullUsagePanel-en.org= etc.). Its =AI-Activity.org= covers
+the panel skeleton conventions and dblock content policy.
+
+** <<lcnt>> --- LCNT content authorship
+
+Pick this for authoring LCNT content: articles, books, presentations
+in LaTeX with XeLaTeX / HeVeA / reveal.js output paths. Its
+=AI-Activity.org= covers LCNT authoring conventions.
 
 * Using This Repo
 
