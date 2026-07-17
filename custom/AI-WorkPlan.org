@@ -1,0 +1,58 @@
+#+title: Work Plan
+#+DATE: <2026-06-10 Wed 13:54>
+#+AUTHOR: Mohsen BANAN
+#+OPTIONS: toc:4
+#+TAGS: me ai aiAndMe
+
+####+BEGIN: b:ai:file/particulars
+* AI Working Context
+  Working Directory: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test
+  File: /bisos/git/auth/bxRepos/bisos/defaults/ai-templates/test/AI-WorkPlan.org
+  Activity: xu-single
+  Companion Docs: AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org
+
+####+END:
+
+This Work Plan file drives the AI collaborative development.
+Interactions are broken down into "Stages". Each Stage has a set
+of TODOs that I work with Claude to accomplish.
+
+Note to a fresh Claude: read this file together with AI-WORKFLOW.org,
+AI-Activity.org and AI-DevStatus.org to orient yourself. The =<<Context Confirmation>>=
+TODO below is the standard first step, or use =/bx-confirm0= as the automated equivalent.
+TODOs tagged =:ai:= are assigned to Claude. After completing a TODO, summarize results
+under =----- AI Results: ------= and mark it DONE.
+
+* Stage 1: Confirm AI's Understanding of This Repo's Context
+
+Goal: Confirm AI's understanding of the context and capture that in [[Context Confirmation]] TODO.
+
+
+* Stage 1 TODOs
+** +
+** TODO [#A] <<Context Confirmation>> for AI (typically triggered by /bx-confirm0) :ai:
+SCHEDULED: <2026-06-09 Tue>
+Based on the series of files starting from CLAUDE.md in this repo,
+describe succinctly what you have understood.
+Enumerate explicitly which files you have imported and which you have considered.
+----- AI Results: ------
+** -
+
+* Stage 2: Description of This Stage Comes Here
+
+Goal: Describe what the goal of this stage is.
+
+
+* Stage 2 TODOs
+** +
+** TODO [#A] Example of a work-item for AI :ai:
+SCHEDULED: <2026-06-09 Tue>
+Description of a work-item
+----- AI Results: ------
+** -
+
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# eval: (setq-local org-log-done 'time)
+# End:

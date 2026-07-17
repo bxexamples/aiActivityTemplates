@@ -65,6 +65,11 @@ instance.
 |                |               | specificity --- each nested =initiateSub= specifies  |
 |                |               | its own activity.                                    |
 |----------------+---------------+------------------------------------------------------|
+| Custom         | [[custom][./custom]]      | For projects whose conventions don't fit any         |
+|                |               | standard activity. Install with                      |
+|                |               | =--noLink=AI-Activity.org= so each project owns its  |
+|                |               | own =AI-Activity.org= (safe-copy, not symlink).      |
+|----------------+---------------+------------------------------------------------------|
 | Python (BISOS) | [[bisos-pip][./bisos-pip]]   | For building =bisos-pip= (BISOS PyPI) packages.      |
 |                | [[xu-single][./xu-single]]   | For single PyCS eXecution Unit scripts.              |
 |                | [[bisos-core][./bisos-core]]  | For BISOS-core / infrastructure work.                |
@@ -107,6 +112,27 @@ establishes the invariant CLAUDE.md hierarchy at the top so that nested
 
 Not appropriate for a leaf project doing one specific kind of work
 --- for those, pick the matching activity directly.
+
+** <<custom>> --- per-project template with owned AI-Activity.org
+
+Pick =custom= when the project's conventions don't fit any of the
+standard activities and you want to write your own =AI-Activity.org=
+without touching a shared template. Its =AI-Activity.org= is intended
+to be safe-copied (per project) rather than symlinked (shared).
+
+Install with the =--noLink=AI-Activity.org= flag:
+
+: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+
+(Or =initiateSub= with the same flag for a subproject overlay.)
+
+Without =--noLink=, =AI-Activity.org= would install as a symlink and
+edits would bleed into every other =custom= project. With =--noLink=,
+the target directory owns its own copy --- edit it freely to encode
+this project's specific conventions.
+
+Prefer a proper standard activity when your project fits one --- reach
+for =custom= only when nothing else applies.
 
 ** <<bisos-pip>> --- building bisos-pip PyPI packages
 

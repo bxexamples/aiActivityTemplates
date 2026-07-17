@@ -1,0 +1,13 @@
+#+title: AI Activity Guidance --- basic (Repo-Root Scaffold)
+
+This file is deliberately generic. It was installed by
+=startAiActivity.cs -i initiate --activity=basic= at a repo root that
+does not itself define a specific activity --- the substantive
+AI-Activity conventions live in the subdirectories, each initiated
+with its own =startAiActivity.cs -i initiateSub --activity=<X>=.
+
+If you are Claude Code loaded at a subdirectory: Claude Code's
+=CLAUDE.md= walk-up loads both this file (from the repo root) and the
+subdirectory's own =AI-Activity.org=. *The subdirectory's file is
+authoritative for the work at hand.* This file has nothing activity-
+specific to add.

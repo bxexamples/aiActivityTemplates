@@ -1,4 +1,4 @@
-#+title: AI-WORKFLOW --- ByStar's Collaborative AI Development Workflow
+#+title: AI-WORKFLOW --- My Collaborative AI Development Workflow
 #+DATE: <2026-06-10 Wed 13:54>
 #+AUTHOR: Mohsen BANAN
 #+OPTIONS: toc:4
@@ -26,7 +26,7 @@ it.
 The AI collaboration files in any given project/repo are installed by
 =startAiActivity.cs=, a PyCS command shipped as the =bisos.startAiActivity=
 pip package (installable via =pipx install bisos.startAiActivity=;
-sources at =/bisos/git/auth/bxRepos/bisos-pip/startAiActivity=).
+sources at https://github.com/bisos-pip/startAiActivity).
 
 Before starting Claude in a new project directory, the developer runs:
 
@@ -75,7 +75,7 @@ The third column is one of: const(constant), ai, you, u+ai --- which says who pr
 | ./AI-WORKFLOW.org  | A description of this workflow, for the AI-Assistant's benefit.  | const |
 |--------------------+------------------------------------------------------------------+-------|
 | ./AI-Activity.org  | Activity-specific guidance: repo purpose, frameworks,            | you   |
-|                    | conventions, and ByStar/BISOS/Blee context for this activity.    |       |
+|                    | conventions, and any relevant context for this activity.         |       |
 |--------------------+------------------------------------------------------------------+-------|
 | ./AI-DevStatus.org | After every major interaction, I ask Claude to update this with  | ai    |
 |                    | details of what it has understood and where the project stands   |       |
@@ -121,8 +121,8 @@ with these =bx-= commands available inside Claude:
 Note: in the Emacs workflow, CLAUDE.md is read automatically at startup.
 =/bx-confirm0= is optional but useful as an explicit session-start confirmation.
 
-AI Templates are kept at: https://github.com/bisos/defaults/tree/master/ai-templates
-An example AI collaborative project: https://github.com/bisos-pip/gitist
+AI Templates are kept at: https://github.com/bxexamples/aiActivityTemplates
+The tool itself is developed as an AI collaborative project: https://github.com/bisos-pip/startAiActivity
 
 ** Claude Permissions
 
