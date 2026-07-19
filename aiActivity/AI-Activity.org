@@ -1,0 +1,372 @@
+#+title: AI Activity Guidance --- The AI Activity Model
+#+OPTIONS: toc:4
+#+TAGS: me ai aiAndMe
+
+This file is the orientation layer for the *AI Activity model* itself
+--- the conventions and mechanics of collaborative AI development as
+implemented by =bisos.startAiActivity=. Read it whenever a project's
+AI collaboration files reference this model, whether this file was
+installed directly (=--activity=aiActivity=) or imported by another
+activity's =AI-Activity.org=.
+
+It is deliberately freestanding: no =@./= imports back to per-project
+files, so it can be safely =@=-imported by any activity's own
+=AI-Activity.org= without dragging in unresolved dependencies.
+
+* When to Read This File
+
+Read this file when you (a fresh Claude session, or a human newly
+joining the project) need to understand:
+
+- What files a startAiActivity-installed project contains and what
+  each one is for.
+- Which files are shared invariants versus per-project state.
+- Why some files are symlinks and others are safe-copies.
+- How =initiate=, =initiateSub=, =aiSuspend=, =aiResume=,
+  =deClaudify=, and =refresh= interact with those files.
+- Where to look for the /kind of work/ this project does (its
+  activity), versus /what specifically is being done/ (its WorkPlan).
+
+Everything below is *about the model*. Anything about *this specific
+project* or *this specific effort* lives elsewhere --- see the
+[[Where To Find What][Where To Find What]] section at the end.
+
+* Two Roles for Two Files
+
+The heart of the model is a distinction between two org-mode files:
+
+- =AI-Activity.org= (this file's role) --- describes /the kind of
+  work/ being done. Reusable across many projects. Typically
+  symlinked from a shared template. Answers: what conventions apply,
+  what libraries or patterns are preferred, what gotchas to watch
+  for.
+- =AI-WorkPlan.org= --- describes /this specific effort/. Per-effort,
+  edited freely. Broken into Stages, each with a set of TODOs
+  (=[#A]= high priority, tagged =:me:= for the human or =:ai:= for
+  Claude). Completed stages are org-archived. Answers: what is being
+  built /right now/, in what order, and what has already been done.
+
+A companion file, =AI-DevStatus.org=, records the current working
+state --- what is done, what is untested, what design decisions have
+been made --- so a fresh reader (human or AI) can pick up cold. It
+is maintained by Claude, typically updated after major interactions
+or before a release.
+
+Together: /Activity/ (class of work) + /WorkPlan/ (this instance) +
+/DevStatus/ (current state) is the durable substrate that survives
+across sessions, machines, and collaborators.
+
+* Files You Will See in an Initiated Project
+
+A project installed with =startAiActivity.cs -i initiate= contains:
+
+|--------------------+---------+---------------------------------------------------|
+| File               | Kind    | Role                                              |
+|--------------------+---------+---------------------------------------------------|
+| =CLAUDE.md=        | copy    | Claude Code entry point. Imports the four files   |
+|                    |         | below via =@= directives.                         |
+| =AI-WORKFLOW.org=  | symlink | Generic workflow overview (this model, but at a   |
+|                    |         | higher level --- "how I collaborate with AI").    |
+| =AI-Activity.org=  | symlink | The kind of work being done. Shared across        |
+|                    |         | projects of this activity.                        |
+| =AI-DevStatus.org= | copy    | Current state of /this/ effort. Per-project.      |
+| =AI-WorkPlan.org=  | copy    | Stages and TODOs driving /this/ effort.           |
+|                    |         | Per-project.                                      |
+| =.claude/=         | dir     | Claude Code configuration.                        |
+|   =settings.json=  | symlink | Session-level settings.                           |
+|   =commands/=      | symlink | Slash-command definitions.                        |
+|   =skills/=        | symlink | On-demand task-specific knowledge (see            |
+|                    |         | [[Skills][Skills]] below).                                    |
+|--------------------+---------+---------------------------------------------------|
+
+Two other files may appear during a suspend/resume cycle:
+=CLAUDE.md.dormant=, =AI-DevStatus.org.dormant=, =AI-WorkPlan.org.dormant=.
+See [[aiSuspend and aiResume][aiSuspend and aiResume]].
+
+* Invariants vs Per-Project State
+
+The model is built on a two-way split.
+
+** Invariants (symlinks)
+
+Files that are the /same/ across every project using a given
+templates base. Symlinked from a shared source
+(=<templatesBase>/mother/= or =<templatesBase>/<activity>/=), so an
+edit to the source propagates automatically to every installed
+project.
+
+These are:
+
+- =AI-WORKFLOW.org= (from =mother/=)
+- =AI-Activity.org= (from =<activity>/=)
+- =.claude/settings.json=, =.claude/commands/=, =.claude/skills/=
+  (from =<activity>/_claude/= or =<activity>/_skills/=, falling back
+  to =mother/=)
+
+/Do not edit these in place/ --- edits are made to the templates
+source, and reach installed projects via the live symlink.
+
+** Per-project state (safe-copies)
+
+Files that are unique to /this/ effort and must not affect anyone
+else. Safe-copied at install time; editing them is expected.
+
+These are:
+
+- =AI-DevStatus.org= (initial content from =<activity>/= or =mother/=)
+- =AI-WorkPlan.org= (same)
+
+** The CLAUDE.md exception
+
+=CLAUDE.md= is conceptually an invariant --- every project of a
+given activity should have the same one --- but it is
+/safe-copied/, not symlinked. This is not a mistake. Claude Code
+resolves symlinks before reading a file, which would cause the
+=@./AI-Activity.org= import inside a symlinked =CLAUDE.md= to
+resolve against the templates directory instead of the current
+project. Safe-copy pins =CLAUDE.md= to the project so its =@./=
+imports resolve where the reader is.
+
+The tradeoff: template changes to =CLAUDE.md= no longer propagate
+automatically. Use =startAiActivity.cs -i refresh= to pull in an
+updated copy.
+
+** The =--noLink= override
+
+Occasionally a file the engine would install as a symlink needs to
+be a per-project copy instead. The canonical case is the =custom=
+activity: its =AI-Activity.org= should be owned by each project, not
+shared. Passing =--noLink=<filename>= to =initiate= or =initiateSub=
+turns that one file's install into a safe-copy:
+
+: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+
+Only one file at a time for now; multi-file =--noLink= is planned.
+
+* Two Modes of Install: initiate and initiateSub
+
+** =initiate= --- the base install
+
+Installs the full stack (CLAUDE.md, AI-WORKFLOW.org, AI-Activity.org,
+AI-DevStatus.org, AI-WorkPlan.org, and =.claude/=) at a project
+root. Use with =--root=repo= to install at the git repo top level,
+or =--root=curDir= (default) for the current directory.
+
+: startAiActivity.cs -i initiate --root=repo --activity=<activityName>
+
+** =initiateSub= --- a slim subproject overlay
+
+Installs only the effort-specific files (=CLAUDE.md=,
+=AI-Activity.org=, =AI-DevStatus.org=, =AI-WorkPlan.org=) in a
+subdirectory. The invariants (=AI-WORKFLOW.org= and =.claude/=) are
+/inherited/ from an already-initiated ancestor via Claude Code's
+walk-up.
+
+: startAiActivity.cs -i initiateSub --activity=<activityName>
+
+Preconditions: an ancestor directory must have been =initiate=-d
+(the engine walks up looking for an =AI-WORKFLOW.org= symlink
+pointing under =templatesBase=), and the current directory must not
+already have a =CLAUDE.md=.
+
+The slim =CLAUDE.md= installed by =initiateSub= imports only its
+local trio. When Claude Code walks up, it hits the parent's
+=CLAUDE.md=, which imports the ancestor's invariants. This is how a
+nested subproject can pick a /different/ activity than its parent
+while still inheriting the shared setup.
+
+** Nested =initiateSub= is allowed
+
+A subproject can itself contain a sub-subproject with its own
+=initiateSub= install. The walk-up finds whichever CLAUDE.md is
+closest.
+
+* Claude Code Walk-Up: What Actually Happens on Startup
+
+When you start a Claude Code session, it walks up from the current
+working directory, collecting every =CLAUDE.md= it finds. Each of
+those CLAUDE.md files uses =@= directives to import its neighboring
+=AI-WORKFLOW.org=, =AI-Activity.org=, =AI-DevStatus.org=, and
+=AI-WorkPlan.org=.
+
+In a base install: one =CLAUDE.md= imports all four.
+In a sub install: the local =CLAUDE.md= imports only the effort-
+specific trio; the ancestor's =CLAUDE.md= supplies the invariants.
+
+This walk-up is the mechanism that makes the sub/base split work
+without duplicating files.
+
+* Lifecycle Commands
+
+** =initiate= / =initiateSub= (install)
+
+Covered above.
+
+** =aiSuspend= and =aiResume=
+
+=aiSuspend= puts a project into a dormant state:
+
+- Renames =CLAUDE.md= to =CLAUDE.md.dormant= (rename, not deletion).
+- Renames =AI-DevStatus.org= and =AI-WorkPlan.org= to =.dormant=
+  suffixes.
+- Removes the invariant symlinks (=AI-WORKFLOW.org=,
+  =AI-Activity.org=) and =.claude/= entries.
+
+Result: a fresh Claude session opening a suspended directory sees
+no active AI collaboration files.
+
+=aiResume= reverses the operation:
+
+- Renames =.dormant= files back to their live names.
+- Re-copies =CLAUDE.md= from templates (or promotes the dormant
+  copy).
+- Re-installs the invariant symlinks and =.claude/=.
+
+Mode (base vs sub) is auto-detected by walking up for a parent
+=AI-WORKFLOW.org= symlink. Activity is inferred from the
+=AI-Activity.org= symlink target, or from an =Activity:= header in
+the restored =AI-WorkPlan.org= dblock.
+
+** =deClaudify=
+
+Permanently removes all AI collaboration files from the current
+directory. Unlike =aiSuspend=, this is irreversible: it deletes the
+per-project =AI-DevStatus.org= and =AI-WorkPlan.org=. Use this only
+when you want to remove the collaboration model from a project
+entirely.
+
+The command is /safe/: it will only remove symlinks that are
+actually symlinks, and files that are actually files. Anything the
+user has converted by hand (a symlink that became a real file, or
+vice versa) is left intact with a =SKIP= note.
+
+** =refresh=
+
+Re-copies =CLAUDE.md= from templates. This is the escape hatch that
+compensates for CLAUDE.md being safe-copied (not symlinked): use it
+when the templates =CLAUDE.md= has changed and you want the update.
+
+=refresh= detects base vs sub mode the same way =aiResume= does
+(parent =AI-WORKFLOW.org= walk-up). It also /upgrades/ legacy
+symlinked =CLAUDE.md= installs: if it finds a symlink at
+=CLAUDE.md=, it unlinks and safe-copies in place. This is the
+one-shot migration for projects installed before CLAUDE.md became a
+safe-copy.
+
+Only =CLAUDE.md= is refreshed for now; per-project files
+(=AI-DevStatus.org=, =AI-WorkPlan.org=, and any file installed with
+=--noLink=) are never touched.
+
+* Templates Base and its Auto-Detection
+
+=<templatesBase>= is the root of a templates repo --- a directory
+containing =mother/= and one subdirectory per activity. The engine
+resolves it in this order:
+
+1. =--templates= CLI flag (highest priority).
+2. Persistent user config (set via =userConfig_set --parName=templates=).
+3. Auto-detect: probes =~/aiActivityTemplates= first, then
+   =/bisos/apps/defaults/ai-templates=. First existing path wins.
+4. If nothing found, the command fails with a clear error.
+
+User-first ordering means a personal fork transparently takes over
+from the BISOS system copy without an explicit =userConfig_set=.
+Setting =userConfig_set= is only needed when neither canonical path
+applies --- e.g., a T-Mobile-fork templates repo at a custom path.
+
+The engine currently ships two /reference/ template trees --- BISOS
+defaults and the public =bxexamples/aiActivityTemplates= --- plus
+whatever private forks users maintain. All share the same directory
+layout so activities are portable across trees.
+
+* Templates Directory Layout
+
+#+begin_example
+<templatesBase>/
+  mother/                       # Invariants shared across all activities
+    CLAUDE.md                   # Base CLAUDE.md
+    AI-WORKFLOW.org             # Generic workflow overview
+    AI-DevStatus.org            # Initial-state template
+    AI-WorkPlan.org             # Initial-state template
+    _claude/                    # Baseline .claude/ contents
+      settings.json
+      commands/
+    _skills/                    # Baseline skills (fallback if activity has none)
+    initiateSub/
+      CLAUDE.md                 # Slim CLAUDE.md for sub installs
+  <activity>/                   # Per-activity content
+    AI-Activity.org             # The kind of work
+    AI-DevStatus.org            # Optional per-activity initial state
+    AI-WorkPlan.org             # Optional per-activity initial state
+    _claude/                    # Optional per-activity overrides
+    _skills/                    # Optional per-activity skills
+      <skill-name>/SKILL.md
+#+end_example
+
+When a per-activity =_claude/= or =_skills/= is missing, the engine
+falls back to =mother/=. When both are missing, no symlink is
+created.
+
+* Skills
+
+Skills are on-demand knowledge packs that Claude Code loads only
+when their description matches the task at hand. They live at
+=<activity>/_skills/<skill-name>/SKILL.md= in the templates repo and
+are symlinked as a single directory into
+=<project>/.claude/skills/= at =initiate= time. =initiateSub= does
+/not/ install skills --- subs inherit them from the ancestor's
+=.claude/=.
+
+Each SKILL.md has YAML frontmatter with =name= and =description=
+fields, followed by Markdown content. The =description= is what
+Claude uses to decide whether to load the skill for a given task,
+so it must be discriminating.
+
+For guidance on /writing/ a new skill, load the =authoring-skills=
+skill that ships with this activity (=aiActivity/_skills/authoring-skills/SKILL.md=).
+
+* The custom Activity: Escape Hatch
+
+When no standard activity fits, the =custom= activity provides a
+template scaffold whose =AI-Activity.org= is expected to be owned
+by the project. Install with:
+
+: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+
+The =--noLink=AI-Activity.org= turns what would be a symlink into a
+safe-copy. The developer then edits the local =AI-Activity.org=
+freely, encoding this project's specific conventions.
+
+/Prefer a proper standard activity when your project fits one./
+Reach for =custom= only when nothing else applies.
+
+* Suspend/Resume vs Remove: Choosing the Right Command
+
+- Use =aiSuspend= / =aiResume= when the pause is /temporary/ and
+  you want the state preserved.
+- Use =deClaudify= when you want to /permanently/ remove the AI
+  collaboration files from a project.
+
+Both operate on the current directory; neither takes a =--root=
+parameter.
+
+* Where To Find What
+
+This file describes the /model/. For other information:
+
+- /Getting started with the engine/, installing it, and its command
+  reference: see the =bisos.startAiActivity= package README at
+  https://github.com/bisos-pip/startAiActivity.
+- /The reference public templates tree/: see
+  https://github.com/bxexamples/aiActivityTemplates.
+- /How I collaborate with AI in general/ (higher-level workflow,
+  not specific to this model): see =AI-WORKFLOW.org= in this
+  project.
+- /The specific work being done in this project/: see
+  =AI-WorkPlan.org= (stages and TODOs) and =AI-DevStatus.org=
+  (current state).
+- /How to author a new skill/: load the =authoring-skills= skill.
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# End:
