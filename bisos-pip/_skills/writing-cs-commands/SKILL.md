@@ -139,6 +139,16 @@ Group related commands under a `menuChapter`. For CSU files (`_csu.py`),
 register via the CSU's own `examples_csu()` function; the parent csxu will
 call it via `pyCmnd()`.
 
+When an examples entry is a raw shell command (not a `cs.Cmnd` invocation),
+use `literal()` instead of `cmnd()`:
+
+```python
+literal("mv .startAiActivity.cs .aiActivity.cs")
+```
+
+`literal()` emits the string verbatim into the examples output. Use relative
+paths in the argument — not absolute paths constructed from `pathlib.Path.cwd()`.
+
 ## Common patterns
 
 - **Read a persistent user-config param**: use
