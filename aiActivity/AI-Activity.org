@@ -4,7 +4,7 @@
 
 This file is the orientation layer for the *AI Activity model* itself
 --- the conventions and mechanics of collaborative AI development as
-implemented by =bisos.startAiActivity=. Read it whenever a project's
+implemented by =bisos.aiActivity=. Read it whenever a project's
 AI collaboration files reference this model, whether this file was
 installed directly (=--activity=aiActivity=) or imported by another
 activity's =AI-Activity.org=.
@@ -18,7 +18,7 @@ files, so it can be safely =@=-imported by any activity's own
 Read this file when you (a fresh Claude session, or a human newly
 joining the project) need to understand:
 
-- What files a startAiActivity-installed project contains and what
+- What files a aiActivity-installed project contains and what
   each one is for.
 - Which files are shared invariants versus per-project state.
 - Why some files are symlinks and others are safe-copies.
@@ -58,7 +58,7 @@ across sessions, machines, and collaborators.
 
 * Files You Will See in an Initiated Project
 
-A project installed with =startAiActivity.cs -i initiate= contains:
+A project installed with =aiActivity.cs -i initiate= contains:
 
 |--------------------+---------+---------------------------------------------------|
 | File               | Kind    | Role                                              |
@@ -128,7 +128,7 @@ project. Safe-copy pins =CLAUDE.md= to the project so its =@./=
 imports resolve where the reader is.
 
 The tradeoff: template changes to =CLAUDE.md= no longer propagate
-automatically. Use =startAiActivity.cs -i refresh= to pull in an
+automatically. Use =aiActivity.cs -i refresh= to pull in an
 updated copy.
 
 ** The =--noLink= override
@@ -139,7 +139,7 @@ activity: its =AI-Activity.org= should be owned by each project, not
 shared. Passing =--noLink=<filename>= to =initiate= or =initiateSub=
 turns that one file's install into a safe-copy:
 
-: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+: aiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
 
 Only one file at a time for now; multi-file =--noLink= is planned.
 
@@ -152,7 +152,7 @@ AI-DevStatus.org, AI-WorkPlan.org, and =.claude/=) at a project
 root. Use with =--root=repo= to install at the git repo top level,
 or =--root=curDir= (default) for the current directory.
 
-: startAiActivity.cs -i initiate --root=repo --activity=<activityName>
+: aiActivity.cs -i initiate --root=repo --activity=<activityName>
 
 ** =initiateSub= --- a slim subproject overlay
 
@@ -162,7 +162,7 @@ subdirectory. The invariants (=AI-WORKFLOW.org= and =.claude/=) are
 /inherited/ from an already-initiated ancestor via Claude Code's
 walk-up.
 
-: startAiActivity.cs -i initiateSub --activity=<activityName>
+: aiActivity.cs -i initiateSub --activity=<activityName>
 
 Preconditions: an ancestor directory must have been =initiate=-d
 (the engine walks up looking for an =AI-WORKFLOW.org= symlink
@@ -331,7 +331,7 @@ When no standard activity fits, the =custom= activity provides a
 template scaffold whose =AI-Activity.org= is expected to be owned
 by the project. Install with:
 
-: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+: aiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
 
 The =--noLink=AI-Activity.org= turns what would be a symlink into a
 safe-copy. The developer then edits the local =AI-Activity.org=
@@ -355,8 +355,8 @@ parameter.
 This file describes the /model/. For other information:
 
 - /Getting started with the engine/, installing it, and its command
-  reference: see the =bisos.startAiActivity= package README at
-  https://github.com/bisos-pip/startAiActivity.
+  reference: see the =bisos.aiActivity= package README at
+  https://github.com/bisos-pip/aiActivity.
 - /The reference public templates tree/: see
   https://github.com/bxexamples/aiActivityTemplates.
 - /How I collaborate with AI in general/ (higher-level workflow,

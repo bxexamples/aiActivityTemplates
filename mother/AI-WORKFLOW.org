@@ -24,17 +24,17 @@ it.
 ** How These Files Are Set Up
 
 The AI collaboration files in any given project/repo are installed by
-=startAiActivity.cs=, a PyCS command shipped as the =bisos.startAiActivity=
-pip package (installable via =pipx install bisos.startAiActivity=;
-sources at https://github.com/bisos-pip/startAiActivity).
+=aiActivity.cs=, a PyCS command shipped as the =bisos.aiActivity=
+pip package (installable via =pipx install bisos.aiActivity=;
+sources at https://github.com/bisos-pip/aiActivity).
 
 Before starting Claude in a new project directory, the developer runs:
 
-: startAiActivity.cs -i initiate --activity=<activity>
+: aiActivity.cs -i initiate --activity=<activity>
 
 For a slim overlay in a subproject of an already-initiated repo, use:
 
-: startAiActivity.cs -i initiateSub --activity=<activity>
+: aiActivity.cs -i initiateSub --activity=<activity>
 
 where =<activity>= matches a subdirectory under =/bisos/apps/defaults/ai-templates/=
 (e.g. =bisos-pip=, =xu-single=, =blee-panels=, =lcnt=).
@@ -88,7 +88,7 @@ The third column is one of: const(constant), ai, you, u+ai --- which says who pr
 |--------------------+------------------------------------------------------------------+-------|
 | ./xx.org_archive   | From time to time I move Done subtrees to org archive files      | u+ai  |
 |                    | (via org-mode's =org-archive-subtree=, standard =C-c C-x C-a=).  |       |
-|                    | The =bisos.startAiActivity= repo ships a real                    |       |
+|                    | The =bisos.aiActivity= repo ships a real                    |       |
 |                    | =AI-WorkPlan.org_archive= alongside =AI-WorkPlan.org= as a       |       |
 |                    | working example of the pattern.                                  |       |
 |--------------------+------------------------------------------------------------------+-------|
@@ -98,7 +98,7 @@ The goal is to establish a precise, evolving and maintainable long-context acros
 
 ** Claude Slash Commands
 
-Each project initialized with =startAiActivity.cs= gets a =.claude/commands/= directory
+Each project initialized with =aiActivity.cs= gets a =.claude/commands/= directory
 with these =bx-= commands available inside Claude:
 
 |--------------------+----------------------------------------------------------------|
@@ -113,7 +113,7 @@ with these =bx-= commands available inside Claude:
 | /bx-update-status  | Rewrite AI-DevStatus.org to reflect current state.             |
 |                    | Use after completing a stage or before a release.              |
 |--------------------+----------------------------------------------------------------|
-| /bx-initiate       | Run startAiActivity.cs then read the full import chain.        |
+| /bx-initiate       | Run aiActivity.cs then read the full import chain.        |
 |                    | For non-Emacs workflows only — Emacs reads CLAUDE.md           |
 |                    | automatically at startup, making this redundant.               |
 |--------------------+----------------------------------------------------------------|
@@ -122,7 +122,7 @@ Note: in the Emacs workflow, CLAUDE.md is read automatically at startup.
 =/bx-confirm0= is optional but useful as an explicit session-start confirmation.
 
 AI Templates are kept at: https://github.com/bxexamples/aiActivityTemplates
-The tool itself is developed as an AI collaborative project: https://github.com/bisos-pip/startAiActivity
+The tool itself is developed as an AI collaborative project: https://github.com/bisos-pip/aiActivity
 
 ** Claude Permissions
 

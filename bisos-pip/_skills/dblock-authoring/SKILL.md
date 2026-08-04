@@ -28,7 +28,7 @@ the generated content.
   Dblocks" link).
 - **Outside Blee**: use `py-dblock.cs updateDblocks <file>` from the
   `bisos.pyDblock` package. This is the pure-Python fallback used by
-  `startAiActivity.cs initiate` for the `b:ai:file/particulars` dblock in
+  `aiActivity.cs initiate` for the `b:ai:file/particulars` dblock in
   copied AI files.
 
 ## Dblock definitions and where they live
@@ -73,11 +73,11 @@ by a `#+BEGIN_SRC emacs-lisp` block that must appear **immediately above** it:
 (setq  b:py:cs:csuList
   (list
    "bisos.b.userConfig_csu"
-   "bisos.startAiActivity.someOther_csu"
+   "bisos.aiActivity.someOther_csu"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.userConfig_csu | bisos.startAiActivity.someOther_csu |
+| bisos.b.userConfig_csu | bisos.aiActivity.someOther_csu |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t :csxuParams nil
@@ -86,9 +86,9 @@ by a `#+BEGIN_SRC emacs-lisp` block that must appear **immediately above** it:
 #+end_org """
 
 from bisos.b import userConfig_csu
-from bisos.startAiActivity import someOther_csu
+from bisos.aiActivity import someOther_csu
 
-csuList = [ 'bisos.b.userConfig_csu', 'bisos.startAiActivity.someOther_csu', ]
+csuList = [ 'bisos.b.userConfig_csu', 'bisos.aiActivity.someOther_csu', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -149,7 +149,7 @@ Two mechanisms:
 Special case — this is the AI-collaboration working-context block at the
 top of `AI-DevStatus.org` and `AI-WorkPlan.org`. Its handler is registered
 by `bisos.pyDblock.dblock_particulars` and is invoked by
-`startAiActivity.cs initiate` at install time (pure Python — no Emacs
+`aiActivity.cs initiate` at install time (pure Python — no Emacs
 required). Its body records `Working Directory`, `File`, `Activity`, and
 `Companion Docs`.
 

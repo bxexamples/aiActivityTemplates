@@ -184,7 +184,7 @@ For a simple single-xu consider
 @/bisos/core/bpip/examples/exmpl-xu-oneSubProc.cs
 
 For a more featurefull example consider
-@/bisos/git/auth/bxRepos/bisos-pip/startAiActivity/py3/bin/startAiActivity.cs
+@/bisos/git/auth/bxRepos/bisos-pip/aiActivity/py3/bin/aiActivity.cs
 
 bisos-pip examples are at:
 /bisos/git/bxRepos/bisos-pip/gitist/py3/panels/bisos.gitist/_nodeBase_/fullUsagePanel-en.org

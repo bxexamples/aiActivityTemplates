@@ -12,7 +12,7 @@ activity assumes each project owns its own copy and edits it freely.
 The intended install form uses =--noLink=AI-Activity.org= so this file
 is safe-copied rather than symlinked:
 
-: startAiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
+: aiActivity.cs -i initiate --activity=custom --noLink=AI-Activity.org
 
 (Or =initiateSub= with the same flag, for a subproject overlay.)
 

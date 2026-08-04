@@ -41,7 +41,7 @@ If a dblock body needs to change, update the header parameters. See the
    | `blee:bxPanel:terseTreeNavigator`         | Folding TOC of decedents/siblings/ancestors |
 
    These are boilerplate — copy the exact header from an existing
-   bisos-pip panel (e.g. `bisos.startAiActivity`, `bisos.gitist`) and only
+   bisos-pip panel (e.g. `bisos.aiActivity`, `bisos.gitist`) and only
    change the `#+title`, `#+roam_key`, and node-path values.
 
 2. **Overview section** — a `blee:bxPanel:foldingSection` with
@@ -186,7 +186,7 @@ Blee.
 
 ## References
 
-- Live example: `py3/panels/bisos.startAiActivity/_nodeBase_/fullUsagePanel-en.org`
+- Live example: `py3/panels/bisos.aiActivity/_nodeBase_/fullUsagePanel-en.org`
 - Other examples: any bisos-pip package under
   `/bisos/git/bxRepos/bisos-pip/*/py3/panels/`
 - Overview of Blee Panels:

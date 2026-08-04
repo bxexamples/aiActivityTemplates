@@ -8,7 +8,7 @@ description: Use when creating a new skill for the AI Activity model — a `_ski
 A **skill** is an on-demand knowledge pack that Claude Code loads
 only when its `description` matches the task at hand. Skills live
 under an activity template directory and are surfaced to Claude via
-the `<project>/.claude/skills/` symlink that `startAiActivity.cs -i
+the `<project>/.claude/skills/` symlink that `aiActivity.cs -i
 initiate` installs.
 
 Read the AI-Activity.org that ships with the `aiActivity` template
@@ -138,7 +138,7 @@ skill grows past ~1000 lines, ask whether it is really two skills.
 
 ## How Skills Flow to `.claude/skills/`
 
-At `startAiActivity.cs -i initiate` time:
+At `aiActivity.cs -i initiate` time:
 
 1. The engine looks for `<templatesBase>/<activity>/_skills/`.
 2. If that directory exists, it creates a symlink at
@@ -164,7 +164,7 @@ skill. That means:
 
 ## The Sub-Install Exception
 
-`startAiActivity.cs -i initiateSub` does **not** install
+`aiActivity.cs -i initiateSub` does **not** install
 `.claude/skills/`. Sub installs are slim: they get only the
 per-effort files (`CLAUDE.md`, `AI-Activity.org`, `AI-DevStatus.org`,
 `AI-WorkPlan.org`). Skills are inherited from the ancestor's

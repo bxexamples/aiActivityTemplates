@@ -172,7 +172,7 @@ call it via `pyCmnd()`.
 ## Reference examples
 
 - Templates in this repo (start here):
-  - `py3/bin/startAiActivity.cs` — csxu with multiple commands
+  - `py3/bin/aiActivity.cs` — csxu with multiple commands
     (`initiate`, `initiateSub`, `deClaudify`, `aiSuspend`, `aiResume`,
     `userConfig_get`, `userConfig_set`, `examples`)
 - For a simple single-XU: `/bisos/core/bpip/examples/exmpl-xu-oneSubProc.cs`
