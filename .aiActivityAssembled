@@ -1,6 +1,6 @@
 {
   "note": "Made by aiActivityAssemble.cs: the links listed here are generated from aiTemplates-workFlow and aiTemplates-DE. Edit the inputs, then assemble again.",
-  "assembledAt": "2026-10-20T04:14:51+00:00",
+  "assembledAt": "2026-10-20T18:28:29+00:00",
   "inputs": {
     "aiTemplates-workFlow": "../aiTemplates-workFlow",
     "aiTemplates-DE": "../aiTemplates-DE"
@@ -47,6 +47,7 @@
     "mother/_skills/bisos-pip-release/SKILL.md": "../../../aiTemplates-DE/mother/_skills/bisos-pip-release/SKILL.md",
     "mother/_skills/bisos-pip-setup-py/SKILL.md": "../../../aiTemplates-DE/mother/_skills/bisos-pip-setup-py/SKILL.md",
     "mother/_skills/blee-panel-authorship/SKILL.md": "../../../aiTemplates-DE/mother/_skills/blee-panel-authorship/SKILL.md",
+    "mother/_skills/bs-pals-web-edit/SKILL.md": "../../../aiTemplates-DE/mother/_skills/bs-pals-web-edit/SKILL.md",
     "mother/_skills/bx-ai-commands-authorship/SKILL.md": "../../../aiTemplates-workFlow/mother/_skills/bx-ai-commands-authorship/SKILL.md",
     "mother/_skills/bx-pals-web-site/SKILL.md": "../../../aiTemplates-DE/mother/_skills/bx-pals-web-site/SKILL.md",
     "mother/_skills/cbm-authorship/SKILL.md": "../../../aiTemplates-DE/mother/_skills/cbm-authorship/SKILL.md",

@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/bs-pals-web-edit/SKILL.md
