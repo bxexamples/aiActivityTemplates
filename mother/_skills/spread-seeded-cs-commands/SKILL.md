@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/spread-seeded-cs-commands/SKILL.md

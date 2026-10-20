@@ -1,0 +1,1 @@
+../../../../aiTemplates-DE/mother/_skills/cbm-package-authorship/tools/orgTableAlign.py

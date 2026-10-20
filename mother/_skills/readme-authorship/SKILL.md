@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/readme-authorship/SKILL.md

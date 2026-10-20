@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/cbm-authorship/SKILL.md

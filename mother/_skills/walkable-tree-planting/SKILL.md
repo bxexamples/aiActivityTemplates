@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/walkable-tree-planting/SKILL.md

@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/astro-site-authorship/SKILL.md

@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/banna-lookup/SKILL.md

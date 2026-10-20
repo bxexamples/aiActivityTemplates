@@ -1,0 +1,1 @@
+../../../aiTemplates-workFlow/mother/_skills/bx-ai-commands-authorship/SKILL.md

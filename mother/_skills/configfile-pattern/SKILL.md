@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/configfile-pattern/SKILL.md

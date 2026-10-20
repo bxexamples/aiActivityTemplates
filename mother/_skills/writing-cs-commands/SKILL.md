@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/writing-cs-commands/SKILL.md

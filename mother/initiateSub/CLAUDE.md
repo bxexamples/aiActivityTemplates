@@ -1,11 +1,1 @@
-# CLAUDE.md — subproject overlay
-
-This is a *subproject* AI-collaboration overlay installed by
-`aiActivity.cs initiateSub`. The invariant AI-collaboration files
-(`CLAUDE.md`, `AI-WORKFLOW.org`) live at a parent directory and are
-loaded automatically by Claude Code's walk-up. This file adds only the
-subproject-specific state.
-
-@./AI-Activity.org
-@./AI-DevStatus.org
-@./AI-WorkPlan.org
+../../aiTemplates-workFlow/mother/initiateSub/CLAUDE.md

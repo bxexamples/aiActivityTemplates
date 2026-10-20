@@ -9,10 +9,21 @@ architecture:
 - *Part 1 --- the execution engine* --- =bisos.aiActivity= (PyPI:
   =pipx install bisos.aiActivity=). The engine ships only the
   =aiActivity.cs= command; it contains no template content.
-- *Part 2 --- the templates (this repo)* --- baseline invariants under
+- *Part 2 --- the templates (this repo and two more)* --- baseline invariants under
   =mother/= plus one directory per activity (=bisos-pip=, =xu-single=,
-  =blee-panels=, =lcnt=, ...). Users clone this repo (or fork it) and
-  point the engine at their clone via =userConfig_set --parName=templates=.
+  =blee-panels=, =lcnt=, ...). This repo is the templates base; its files are links into
+  [[https://github.com/bxexamples/aiTemplates-workFlow][aiTemplates-workFlow]] and
+  [[https://github.com/bxexamples/aiTemplates-DE][aiTemplates-DE]]. Clone the three side by side:
+
+  #+begin_src bash
+  cd ~
+  git clone https://github.com/bxexamples/aiActivityTemplates
+  git clone https://github.com/bxexamples/aiTemplates-workFlow
+  git clone https://github.com/bxexamples/aiTemplates-DE
+  #+end_src
+
+  The engine auto-detects =~/aiActivityTemplates=; elsewhere, point it at your clone with
+  =userConfig_set --parName=templates=.
 
 The engine and the templates are versioned independently. Improvements
 to the engine ship via =pipx upgrade=; improvements to the templates
@@ -94,9 +105,30 @@ what (if anything) it ships beyond the standard file set.
 
 Not an activity you =initiate= directly. Its contents (=CLAUDE.md=,
 =AI-WORKFLOW.org=, =_claude/settings.json=,
-=_claude/commands/=, =initiateSub/CLAUDE.md=) are what every =initiate=
+=_claude/commands/=, =_skills/=, =initiateSub/CLAUDE.md=) are what every =initiate=
 symlinks in. ByStar-wide conventions that should apply to every activity
 live here.
+
+A templates tree is two layers, and =mother/= holds most of the first:
+
+- *BISOS-AI-Workflow* --- what drives an AI-Activity, the same for everyone: the =/bx-*= slash
+  commands (=_claude/commands/=, one set for every activity, with no per-activity override), the
+  workflow skills (=_skills/=: =authoring-skills=, =bx-ai-commands-authorship=), =AI-WORKFLOW.org=,
+  =CLAUDE.md= and the seeds of =AI-DevStatus.org= / =AI-WorkPlan.org=, the generic activities. Adopt
+  it as-is: near zero cost.
+- *BISOS-Digital-Ecosystem-Skills* --- the BISOS / Blee / ByStar skills and activities. They encode
+  our ecosystem: keep them as examples, write your own.
+
+*This directory is assembled* (since 2026-10-20): its =mother/= and activities are generated links,
+made by =aiActivityAssemble.cs= ([[https://github.com/bisos-pip/aiActivity][bisos.aiActivity]]) from
+two inputs with fixed names, =aiTemplates-workFlow= (layer 1) and =aiTemplates-DE= (layer 2), here
+links to the sibling clones =../aiTemplates-workFlow= and =../aiTemplates-DE=, committed with this
+repo, so a side-by-side clone needs no further step. On a BISOS host the BISOS templates
+(=/bisos/apps/defaults/ai-templates=) are a link to this directory. To fork: take
+=aiTemplates-workFlow= as it is (a clone and a link), put your own skills and activities in your own
+=aiTemplates-DE=, and run =aiActivityAssemble.cs -i assemblyUpdate --base=<your templates directory>=.
+
+The engine's README ("Forking the Templates: Two Layers") has the details and the figures.
 
 Edit =mother/= carefully: changes propagate live to every project that
 has been =initiate=-d against this templates directory (that's the

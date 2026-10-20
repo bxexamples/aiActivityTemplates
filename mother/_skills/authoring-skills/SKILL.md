@@ -1,0 +1,1 @@
+../../../aiTemplates-workFlow/mother/_skills/authoring-skills/SKILL.md

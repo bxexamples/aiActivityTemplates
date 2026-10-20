@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/sysd-pcs-authorship/SKILL.md
