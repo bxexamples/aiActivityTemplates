@@ -1,6 +1,6 @@
 {
   "note": "Made by aiActivityAssemble.cs: the links listed here are generated from aiTemplates-workFlow and aiTemplates-DE. Edit the inputs, then assemble again.",
-  "assembledAt": "2026-10-20T18:28:29+00:00",
+  "assembledAt": "2026-10-24T04:41:26+00:00",
   "inputs": {
     "aiTemplates-workFlow": "../aiTemplates-workFlow",
     "aiTemplates-DE": "../aiTemplates-DE"
@@ -64,6 +64,11 @@
     "mother/_skills/dblock-authoring/SKILL.md": "../../../aiTemplates-DE/mother/_skills/dblock-authoring/SKILL.md",
     "mother/_skills/graphviz-authoring/SKILL.md": "../../../aiTemplates-DE/mother/_skills/graphviz-authoring/SKILL.md",
     "mother/_skills/icm-to-pycs-conversion/SKILL.md": "../../../aiTemplates-DE/mother/_skills/icm-to-pycs-conversion/SKILL.md",
+    "mother/_skills/lcnt-build-and-release/SKILL.md": "../../../aiTemplates-DE/mother/_skills/lcnt-build-and-release/SKILL.md",
+    "mother/_skills/lcnt-info-authoring/SKILL.md": "../../../aiTemplates-DE/mother/_skills/lcnt-info-authoring/SKILL.md",
+    "mother/_skills/lcnt-multimedia/SKILL.md": "../../../aiTemplates-DE/mother/_skills/lcnt-multimedia/SKILL.md",
+    "mother/_skills/lcnt-new-document/SKILL.md": "../../../aiTemplates-DE/mother/_skills/lcnt-new-document/SKILL.md",
+    "mother/_skills/lcnt-ttytex-authoring/SKILL.md": "../../../aiTemplates-DE/mother/_skills/lcnt-ttytex-authoring/SKILL.md",
     "mother/_skills/readme-authorship/SKILL.md": "../../../aiTemplates-DE/mother/_skills/readme-authorship/SKILL.md",
     "mother/_skills/sbom-authoring/SKILL.md": "../../../aiTemplates-DE/mother/_skills/sbom-authoring/SKILL.md",
     "mother/_skills/seeded-cs-commands/SKILL.md": "../../../aiTemplates-DE/mother/_skills/seeded-cs-commands/SKILL.md",

@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/lcnt-ttytex-authoring/SKILL.md

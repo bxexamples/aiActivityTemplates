@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/lcnt-info-authoring/SKILL.md

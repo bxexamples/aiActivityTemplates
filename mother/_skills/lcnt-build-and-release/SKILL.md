@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/lcnt-build-and-release/SKILL.md

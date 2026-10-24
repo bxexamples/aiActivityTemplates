@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/lcnt-multimedia/SKILL.md
