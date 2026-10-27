@@ -1,0 +1,1 @@
+../../../aiTemplates-DE/mother/_skills/bs-blee-emacs-server/SKILL.md
